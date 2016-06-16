@@ -14,7 +14,7 @@ def addMatrices(matrix1, matrix2):
     return result
 
 
-matrix1 = [[1, 2, 3], [5, 6, 7], [9, 2, 5]]
-matrix2 = [[10, 10, 10], [1, 1, 1], [5, 5, 5]]
-
-print(addMatrices(matrix1, matrix2))
+# matrix1 = [[1, 2, 3], [5, 6, 7], [9, 2, 5]]
+# matrix2 = [[10, 10, 10], [1, 1, 1], [5, 5, 5]]
+#
+# print(addMatrices(matrix1, matrix2))

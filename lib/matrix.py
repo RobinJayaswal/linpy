@@ -1,7 +1,6 @@
 __author__ = 'robinjayaswal'
 
 
-
 def getInverseMatrix(matrix):
     # if there are too few variables, do not even bother
     if (len(matrix) != len(matrix[0])):

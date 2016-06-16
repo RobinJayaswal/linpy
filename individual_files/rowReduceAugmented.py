@@ -14,13 +14,15 @@ def rowReduceAugmented(augmentedMatrix):
     for i in range(len(augmentedMatrix)):
         main = reducedEchelonMatrix[i][i]   # store the diagonal we are currently working with
         for j in range(i + 1, len(augmentedMatrix)):    # go down column to make every entry zero
-            divisor = float(main) / float(reducedEchelonMatrix[j][i])
-            for k in range(i, len(augmentedMatrix[0])):
-                # multiply entire row of the current entry we are eliminating by the factor, subtract corresponding entry
-                # of the main row
-                reducedEchelonMatrix[j][k] *= divisor
-                reducedEchelonMatrix[j][k] -= reducedEchelonMatrix[i][k]
+            if reducedEchelonMatrix[j][i] != 0:
+                divisor = float(main) / float(reducedEchelonMatrix[j][i])
+                for k in range(i, len(augmentedMatrix[0])):
+                    # multiply entire row of the current entry we are eliminating by the factor, subtract corresponding entry
+                    # of the main row
+                    reducedEchelonMatrix[j][k] *= divisor
+                    reducedEchelonMatrix[j][k] -= reducedEchelonMatrix[i][k]
 
+    printMatrix.printMatrix(reducedEchelonMatrix)
     # going up step
     for i in range(len(augmentedMatrix)):
         # calculate current row and column of the main diagonal we will use to eliminate above entries
@@ -33,14 +35,16 @@ def rowReduceAugmented(augmentedMatrix):
             pivot = reducedEchelonMatrix[j][j]
             pivot *= divisor
             pivot -= reducedEchelonMatrix[row][j]
-
-            pivotScalar = 1.0 / pivot
+            pivotScalar = 0
+            if pivot != 0:
+                pivotScalar = 1.0 / pivot
 
             for k in range(0, len(augmentedMatrix[0])):  # go through entire current row multiplying by factor and subtracting
                 reducedEchelonMatrix[j][k] *= divisor
                 reducedEchelonMatrix[j][k] -= reducedEchelonMatrix[row][k]
 
-                reducedEchelonMatrix[j][k] *= pivotScalar
+                if pivot != 0:
+                    reducedEchelonMatrix[j][k] *= pivotScalar
 
                 # round the matrix entry to 3 decimal places
                 reducedEchelonMatrix[j][k] = float("{0:.3f}".format(reducedEchelonMatrix[j][k]))
@@ -62,5 +66,8 @@ def rowReduceAugmented(augmentedMatrix):
 # 9 2 5 | 2
 # .2 * 6 = 1.2, 1.2 - 2
 
-matrix1 = [[1, 2, 3, 2], [5, 6, 7, 5], [9, 2, 5, 2]]
-printMatrix.printMatrix(rowReduceAugmented(matrix1))
+# matrix1 = [[1, 2, 3, 2], [5, 6, 7, 5], [9, 2, 5, 2]]
+# printMatrix.printMatrix(rowReduceAugmented(matrix1))
+
+matrix = [[2, 5, -3, -4, 8], [4, 7, -4, -3, 9], [6, 9, -5, 2, 4], [0, -9, 6, 5, -6]]
+printMatrix.printMatrix(rowReduceAugmented(matrix))

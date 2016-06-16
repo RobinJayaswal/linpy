@@ -83,6 +83,6 @@ def getInverseMatrix(matrix):
 
     return inverse
 
-matrix1 = [[1, 2, 3], [5, 6, 7], [9, 2, 5]]
-
-getInverseMatrix(matrix1)
+# matrix1 = [[1, 2, 3], [5, 6, 7], [9, 2, 5]]
+#
+# getInverseMatrix(matrix1)
